@@ -88,4 +88,17 @@ public class GreetingController {
         return greetingService.getAllGreetings();
     }
 
+    //Endpoint to edit an existing greeting message
+    @PutMapping("/editGreeting")
+    public Greeting editGreeting(@RequestParam String firstName,
+                                 @RequestParam String lastName,
+                                 @RequestParam String newMessage) {
+        Greeting updatedGreeting = greetingService.editGreetingMessage(firstName, lastName, newMessage);
+        if (updatedGreeting != null) {
+            return updatedGreeting;  //Return the updated greeting
+        } else {
+            //If the greeting wasn't found, return an error message or null
+            return null;
+        }
+    }
 }

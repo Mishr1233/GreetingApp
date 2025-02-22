@@ -53,6 +53,21 @@ public class GreetingService {
     public List<Greeting> getAllGreetings() {
         return new ArrayList<>(greetingsMap.values());  //Return all stored greetings as a list
     }
+
+    //Edit an existing greeting message
+    public Greeting editGreetingMessage(String firstName, String lastName, String newMessage) {
+        String key = firstName + "_" + lastName;
+
+        // Check if the greeting exists
+        if (greetingsMap.containsKey(key)) {
+            Greeting existingGreeting = greetingsMap.get(key);
+            existingGreeting.setMessage(newMessage);  //Update the message
+            return existingGreeting;  //Return the updated greeting
+        } else {
+            //If the greeting does not exist, return null or handle as needed
+            return null;
+        }
+    }
 }
 
 
