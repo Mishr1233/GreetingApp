@@ -6,6 +6,8 @@ import com.example.GreetingApp.service.GreetingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/greetings")
 public class GreetingController {
@@ -78,6 +80,12 @@ public class GreetingController {
                                      @RequestParam String lastName) {
         //Retrieve the saved greeting message
         return greetingService.getGreetingByName(firstName, lastName);
+    }
+
+    //Endpoint to list all saved greeting messages
+    @GetMapping("/allGreetings")
+    public List<Greeting> listAllGreetings() {
+        return greetingService.getAllGreetings();
     }
 
 }

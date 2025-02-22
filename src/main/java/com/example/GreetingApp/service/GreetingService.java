@@ -3,7 +3,9 @@ package com.example.GreetingApp.service;
 import com.example.GreetingApp.entity.Greeting;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -45,6 +47,11 @@ public class GreetingService {
     public Greeting getGreetingByName(String firstName, String lastName) {
         String key = firstName + "_" + lastName;
         return greetingsMap.get(key);  //Retrieve the greeting from the map
+    }
+
+    // List all greetings
+    public List<Greeting> getAllGreetings() {
+        return new ArrayList<>(greetingsMap.values());  //Return all stored greetings as a list
     }
 }
 
