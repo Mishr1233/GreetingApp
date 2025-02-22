@@ -68,6 +68,16 @@ public class GreetingService {
             return null;
         }
     }
+
+    //Delete a greeting message by firstName and lastName
+    public boolean deleteGreetingMessage(String firstName, String lastName) {
+        String key = firstName + "_" + lastName;
+        if (greetingsMap.containsKey(key)) {
+            greetingsMap.remove(key);  //Remove the greeting
+            return true;  //Deletion successful
+        }
+        return false;  //Greeting not found
+    }
 }
 
 

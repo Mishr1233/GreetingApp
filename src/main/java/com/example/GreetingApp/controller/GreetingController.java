@@ -101,4 +101,15 @@ public class GreetingController {
             return null;
         }
     }
+
+    //Endpoint to delete a greeting message
+    @DeleteMapping("/deleteGreeting")
+    public String deleteGreeting(@RequestParam String firstName, @RequestParam String lastName) {
+        boolean deleted = greetingService.deleteGreetingMessage(firstName, lastName);
+        if (deleted) {
+            return "{\"message\": \"Greeting deleted successfully!\"}";
+        } else {
+            return "{\"message\": \"Greeting not found!\"}";
+        }
+    }
 }
