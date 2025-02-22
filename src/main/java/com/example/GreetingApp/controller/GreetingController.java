@@ -1,5 +1,6 @@
 package com.example.GreetingApp.controller;
 
+import com.example.GreetingApp.entity.Greeting;
 import com.example.GreetingApp.entity.GreetingRequest;
 import com.example.GreetingApp.service.GreetingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,6 +63,21 @@ public class GreetingController {
     public String deleteGreeting() {
         currentGreeting = "Greeting deleted";
         return "{\"message\": \"" + currentGreeting + "\"}";
+    }
+
+    @PostMapping("/saveGreeting")
+    public Greeting saveGreeting(@RequestParam String firstName,
+                                 @RequestParam String lastName,
+                                 @RequestParam String message) {
+        // Save the greeting to the in-memory store
+        return greetingService.saveGreetingMessage(firstName, lastName, message);
+    }
+
+    @GetMapping("/getGreeting")
+    public Greeting getSavedGreeting(@RequestParam String firstName,
+                                     @RequestParam String lastName) {
+        //Retrieve the saved greeting message
+        return greetingService.getGreetingByName(firstName, lastName);
     }
 
 }
