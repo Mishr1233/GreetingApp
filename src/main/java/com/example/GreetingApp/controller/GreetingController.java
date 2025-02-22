@@ -19,6 +19,18 @@ public class GreetingController {
         this.greetingService = greetingService;
     }
 
+   @GetMapping("/firstName/{firstName}/lastName/{lastName}")
+    public String getGreeting(
+           @PathVariable String firstName,
+           @PathVariable String lastName) {
+
+        //Use the service to get the appropriate greeting message
+        String message = greetingService.getGreetingMessage(firstName, lastName);
+        return "{\"message\": \"" + message + "\"}";
+    }
+
+
+
     @GetMapping("/hello")
     public String Greeting() {
         //Use the service to get the greeting
