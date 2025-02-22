@@ -78,6 +78,12 @@ public class GreetingService {
         }
         return false;  //Greeting not found
     }
+
+    // Find a greeting message by firstName and lastName
+    public Greeting findGreetingByName(String firstName, String lastName) {
+        String key = firstName + "_" + lastName;
+        return greetingsMap.get(key);  // Retrieve the greeting from memory
+    }
 }
 
 
